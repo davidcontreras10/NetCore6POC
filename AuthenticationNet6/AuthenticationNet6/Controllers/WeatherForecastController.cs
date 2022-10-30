@@ -24,11 +24,11 @@ namespace AuthenticationNet6.Controllers
 
         [CustomAuthorize]
         [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<IEnumerable<WeatherForecast>> GetAsync()
         {
             var userIdClaim = User.Claims.FirstOrDefault(c => c.Type == "id");
             var userId = userIdClaim?.Value;
-            var appUser = _userService.GetByIdAsync(userId);
+            var appUser = await _userService.GetByIdAsync(userId);
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateTime.Now.AddDays(index),
