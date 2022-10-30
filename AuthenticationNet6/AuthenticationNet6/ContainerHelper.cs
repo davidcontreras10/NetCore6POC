@@ -18,7 +18,7 @@ namespace AuthenticationNet6
 		private static void SetupEntityFramework(IServiceCollection services, ConfigurationManager configuration)
 		{
 			services.AddDbContext<EFAppContext>(options =>
-				  options.UseSqlServer(configuration.GetConnectionString("SQLServer")
+				  options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")
 									  , x => x.MigrationsAssembly("EFDataAccess")
 									  ));
 		}
