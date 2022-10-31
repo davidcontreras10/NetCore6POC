@@ -48,17 +48,18 @@ var app = builder.Build();
 
 app.UseMiddleware<AuthenticationMiddleware>();
 
+app.UseSwagger();
+app.UseSwaggerUI();
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-	app.UseSwagger();
-	app.UseSwaggerUI();
-	using (var scope = app.Services.CreateScope())
-	{
-		var dbContext = scope.ServiceProvider.GetRequiredService<EFAppContext>();
-		dbContext.Database.EnsureDeleted();
-		dbContext.Database.EnsureCreated();
-	}
+	//using (var scope = app.Services.CreateScope())
+	//{
+	//	var dbContext = scope.ServiceProvider.GetRequiredService<EFAppContext>();
+	//	dbContext.Database.EnsureDeleted();
+	//	dbContext.Database.EnsureCreated();
+	//}
 
 }
 
